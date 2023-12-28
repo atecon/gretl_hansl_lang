@@ -1,0 +1,364 @@
+{
+	"information_for_contributors": [
+		"This file has been converted from URL",
+		"If you want to provide a fix or improvement, please create a pull request against the original repository.",
+		"Once accepted there, we are happy to receive an update request."
+	],
+	"name": "gretl-language",
+	"scopeName": "source.gretl",
+	"patterns": [
+		{
+			"include": "#comments"
+		},
+		{
+			"comment": "Interpreted string literals",
+			"begin": "\"",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.begin.gretl"
+				}
+			},
+			"end": "\"",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.end.gretl"
+				}
+			},
+			"name": "string.quoted.double.gretl",
+			"patterns": [
+				{
+					"include": "#string_escaped_char"
+				},
+				{
+					"include": "#string_placeholder"
+				}
+			]
+		},
+		{
+			"comment": "Raw string literals",
+			"begin": "`",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.begin.gretl"
+				}
+			},
+			"end": "`",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.end.gretl"
+				}
+			},
+			"name": "string.quoted.raw.gretl",
+			"patterns": [
+				{
+					"include": "#string_placeholder"
+				}
+			]
+		},
+		{
+			"comment": "Syntax error numeric literals",
+			"match": "\\b0[0-7]*[89]\\d*\\b",
+			"name": "invalid.illegal.numeric.gretl"
+		},
+		{
+			"comment": "Built-in functions",
+			"match": "\\b(abs|acos|acosh|aggregate|argname)\\b(?=\\()",
+			"name": "support.function.builtin.gretl"
+		},
+		{
+			"comment": "Language constants",
+			"match": "\\b(TRUE|FALSE|empty|null|NA|nan)\\b",
+			"name": "constant.language.gretl"
+		},
+		{
+			"begin": "\\b(include)\\s+",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.include.gretl"
+				}
+			},
+			"end": "(?!\\G)",
+			"patterns": [
+				{
+					"include": "#imports"
+				}
+			]
+		},
+		{
+			"comment": "Include gretl code or package",
+			"match": "^include\\s+\\D*\\.(inp|gfn)",
+			"name": "keyword.import.gretl"
+		},
+		{
+			"comment": "Terminators",
+			"match": ";",
+			"name": "punctuation.terminator.gretl"
+		},
+		{
+			"include": "#brackets"
+		},
+		{
+			"include": "#delimiters"
+		},
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#operators"
+		},
+		{
+			"include": "#storage_types"
+		},
+		{
+			"include": "#function_decl"
+		}
+	],
+	"repository": {
+		"brackets": {
+			"patterns": [
+				{
+					"begin": "{",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.begin.bracket.curly.gretl"
+						}
+					},
+					"end": "}",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.end.bracket.curly.gretl"
+						}
+					},
+					"patterns": [
+						{
+							"include": "$self"
+						}
+					]
+				},
+				{
+					"begin": "\\(",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.begin.bracket.round.gretl"
+						}
+					},
+					"end": "\\)",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.end.bracket.round.gretl"
+						}
+					},
+					"patterns": [
+						{
+							"include": "$self"
+						}
+					]
+				},
+				{
+					"match": "\\[|\\]",
+					"name": "punctuation.definition.bracket.square.gretl"
+				}
+			]
+		},
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.block.gretl",
+					"begin": "(\\/\\*)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.comment.gretl"
+						}
+					},
+					"end": "(\\*\\/)",
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.definition.comment.gretl"
+						}
+					}
+				},
+				{
+					"name": "comment.line.gretl",
+					"begin": "(\\#)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.comment.gretl"
+						}
+					},
+					"end": "(?:\\n|$)"
+				}
+			]
+		},
+		"delimiters": {
+			"patterns": [
+				{
+					"match": ",",
+					"name": "punctuation.other.comma.gretl"
+				}
+			]
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"comment": "Flow control keywords",
+					"match": "\\b(break|catch|clear|continue|endif|else|elif|end|endif|endloop|flush|foreign|funcerr|if|loop|mpi|run|set|setopt|return)\\b",
+					"name": "keyword.control.gretl"
+				},
+				{
+					"match": "\\bconst\\b",
+					"name": "keyword.const.gretl"
+				}
+			]
+		},
+		"operators": {
+			"comment": "Note that the order here is very important!",
+			"patterns": [
+				{
+					"match": "(\\*|&)(?=\\w)",
+					"name": "keyword.operator.address.gretl"
+				},
+				{
+					"match": "<\\-",
+					"name": "keyword.operator.channel.gretl"
+				},
+				{
+					"match": "\\-\\-",
+					"name": "keyword.operator.decrement.gretl"
+				},
+				{
+					"match": "\\+\\+",
+					"name": "keyword.operator.increment.gretl"
+				},
+				{
+					"match": "(==|!=|<=|>=|.=|.!=|.<=|.>=|<|>)",
+					"name": "keyword.operator.comparison.gretl"
+				},
+				{
+					"match": "(&&|\\|\\||!)",
+					"name": "keyword.operator.logical.gretl"
+				},
+				{
+					"match": "(=|\\+=|\\-=|\\|=|\\^=|\\*=|/=|\\~=|(@|\\$)(?=\\w))",
+					"name": "keyword.operator.assignment.gretl"
+				},
+				{
+					"match": "(\\+|\\-|\\*|/|%|\\^)",
+					"name": "keyword.operator.arithmetic.gretl"
+				},
+				{
+					"match": "(\\~|\\|)",
+					"name": "keyword.operator.channel.gretl"
+				}
+			]
+		},
+		"runes": {
+			"patterns": [
+				{
+					"begin": "'",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.gretl"
+						}
+					},
+					"end": "'",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.gretl"
+						}
+					},
+					"name": "string.quoted.rune.gretl",
+					"patterns": [
+						{
+							"match": "\\G(\\\\([0-7]{3}|[abfnrtv\\\\'\"]|x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8})|.)(?=')",
+							"name": "constant.other.rune.gretl"
+						},
+						{
+							"match": "[^']+",
+							"name": "invalid.illegal.unknown-rune.gretl"
+						}
+					]
+				}
+			]
+		},
+		"storage_types": {
+			"patterns": [
+				{
+					"match": "\\bbool\\b",
+					"name": "storage.type.boolean.gretl"
+				},
+				{
+					"match": "\\bbundle\\b",
+					"name": "storage.type.struct.gretl"
+				},
+				{
+					"match": "\\bbundles\\b",
+					"name": "storage.type.struct.gretl"
+				},
+				{
+					"match": "\\bint\\b",
+					"name": "storage.type.numeric.gretl"
+				},
+				{
+					"match": "\\blist\\b",
+					"name": "storage.type.numeric.gretl"
+				},
+				{
+					"match": "\\bmatrix\\b",
+					"name": "storage.type.numeric.gretl"
+				},
+				{
+					"match": "\\bmatrices\\b",
+					"name": "storage.type.numeric.gretl"
+				},
+				{
+					"match": "\\bscalar\\b",
+					"name": "storage.type.numeric.gretl"
+				},
+				{
+					"match": "\\bseries\\b",
+					"name": "storage.type.numeric.gretl"
+				},
+				{
+					"match": "\\bstring\\b",
+					"name": "storage.type.string.gretl"
+				},
+				{
+					"match": "\\bstrings\\b",
+					"name": "storage.type.string.gretl"
+				},
+				{
+					"match": "\\bvoid\\b",
+					"name": "storage.type.void.gretl"
+				}
+			]
+		},
+		"string_escaped_char": {
+			"patterns": [
+				{
+					"match": "\\\\([0-7]{3}|[abfnrtv\\\\'\"]|x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8})",
+					"name": "constant.character.escape.gretl"
+				},
+				{
+					"match": "\\\\[^0-7xuUabfnrtv\\'\"]",
+					"name": "invalid.illegal.unknown-escape.gretl"
+				}
+			]
+		},
+		"string_placeholder": {
+			"patterns": [
+				{
+					"match": "%(\\[\\d+\\])?([\\+#\\-0\\x20]{,2}((\\d+|\\*)?(\\.?(\\d+|\\*|(\\[\\d+\\])\\*?)?(\\[\\d+\\])?)?))?[vT%tbcdoqxXUbeEfFgGspw]",
+					"name": "constant.other.placeholder.gretl"
+				}
+			]
+		},
+		"function_decl": {
+			"patterns": [
+				{
+					"comment": "Function declarations",
+					"match": "\\b(function)\\s+([a-zA-Z][a-zA-Z0-9]*)\\s+([a-zA-Z][a-zA-Z0-9]*)\\s*(\\()(.*)\\s*\\nend\\s+function"
+				}
+			]
+		}
+	}
+}

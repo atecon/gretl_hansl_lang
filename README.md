@@ -1,0 +1,1 @@
+# Gretl-Hansl Syntax support for vscode

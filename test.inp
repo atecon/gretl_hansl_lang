@@ -1,0 +1,9 @@
+clear
+set verbose off
+
+print "hello, world!"
+
+open denmark -q
+summary --simple
+
+tsplots dataset --output=display

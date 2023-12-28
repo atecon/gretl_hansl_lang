@@ -1,0 +1,57 @@
+{
+    // commenting this as our custom language does not usee comments
+    // additionally to avoid collisions with JS comments
+    //
+    //"comments": {
+        // symbol used for single line comment. Remove this entry if your language does not support line comments
+        //"lineComment": "//",
+        // symbols used for start and end a block comment. Remove this entry if your language does not support block comments
+    //    "blockComment": [ "/*", "*/" ]
+    //},
+    // symbols for commenting
+    "comments": {
+		"lineComment": "#",
+		"blockComment": ["/*", "*/"]
+	},
+    // symbols used as brackets
+    "brackets": [
+        ["{", "}"],
+        ["[", "]"],
+        ["(", ")"]
+    ],
+    // symbols that are auto closed when typing
+    "autoClosingPairs": [
+        ["{", "}"],
+        ["[", "]"],
+        ["(", ")"],
+        ["\"", "\""],
+        ["'", "'"],
+        ["/*", "*/"],
+        { "open": "`", "close": "`", "notIn": ["string"]},
+		{ "open": "\"", "close": "\"", "notIn": ["string"]},
+		{ "open": "'", "close": "'", "notIn": ["string", "comment"]}
+
+    ],
+    // symbols that can be used to surround a selection
+    "surroundingPairs": [
+        ["{", "}"],
+        ["[", "]"],
+        ["(", ")"],
+        ["/*", "*/"],
+        ["\"", "\""],
+        ["'", "'"]
+    ],
+
+    // This needs to be checked
+    "indentationRules": {
+		"increaseIndentPattern": "^.*(\\bcase\\b.*:|\\bdefault\\b:|(\\b(func|if|else|switch|select|function|plot)\\b.*)?{[^}\"'`]*|\\([^)\"'`]*)$",
+		"decreaseIndentPattern": "^\\s*(\\bcase\\b.*:|\\bdefault\\b:|}[)}]*[),]?|\\)[,]?)$"
+	},
+    // This needs to be checked
+    "folding": {
+		"markers": {
+			"start": "^\\s*//\\s*#?region\\b",
+			"end": "^\\s*//\\s*#?endregion\\b"
+		}
+	}
+}

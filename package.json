@@ -1,0 +1,31 @@
+{
+    "name": "gretl-language",
+    "displayName": "gretl-language",
+    "description": "gretl-language",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.42.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "publisher": "Artur Tarassow",
+    "contributes": {
+        "languages": [
+            {
+                "id": "gretl",
+                "aliases": ["gretl", "Gretl", "Hansl", "hansl"],
+                "extensions": [".inp"],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars":
+        [
+            {
+                "language": "gretl",
+                "scopeName": "source.gretl",
+                "path": "./syntaxes/gretl.tmLanguage.json"
+            }
+        ]
+    }
+}
