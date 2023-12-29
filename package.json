@@ -24,7 +24,7 @@
     "bugs": {
         "url": "https://github.com/atecon/gretl_hansl_lang/issues"
     },
-    //"license": "MIT",
+    "license": "MIT",
     "contributes": {
         "languages": [
             {
@@ -41,12 +41,12 @@
                 "scopeName": "source.gretl",
                 "path": "./syntaxes/gretl.tmLanguage.json"
             }
-        ],
+],
         "snippets": [
             {
               "language": "gretl",
               "path": "./snippets/gretl.json"
             }
-          ]
+        ]
     }
 }

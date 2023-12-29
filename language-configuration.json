@@ -43,15 +43,19 @@
     ],
     // This needs to be checked
     "indentationRules": {
-		"increaseIndentPattern": "^\\s*(\\b(else|elseif|foreign|function|if|loop|mpi|plot|restrict).+$",
+		"increaseIndentPattern": "^\\s*(\\b(else|elseif|foreign|function|if|loop|mpi|plot|restrict)$",
 		"decreaseIndentPattern": "^\\s*(\\b(end).+$"
 	},
     "onEnterRules": [
         {
-            "beforeText": "^\\s*(\\b(else|elseif|foreign|function|if|loop|mpi|plot|restrict).+$",
+            "beforeText": "^\\s*(?:else|elseif|foreign|function|if|loop|mpi|plot|restrict).*?:\\s*$",
             "action": {
                 "indent": "indent"
             }
+        },
+        {
+            "beforeText": "^\\s*(?:def|class|for|if|elif|else|while|try|with|finally|except|async).*?:\\s*$",
+            "action": { "indent": "indent" }
         }
     ],
     // This needs to be checked
