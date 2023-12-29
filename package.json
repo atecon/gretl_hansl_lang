@@ -1,15 +1,30 @@
 {
     "name": "gretl-language",
     "displayName": "gretl-language",
-    "description": "gretl-language",
+    "description": "Gretl support for vscode",
     "version": "0.0.1",
     "engines": {
         "vscode": "^1.42.0"
     },
     "categories": [
-        "Programming Languages"
+        "Programming Languages",
+        "Snippets",
+        "Data Science",
+        "Education"
     ],
     "publisher": "Artur Tarassow",
+    "author": {
+        "name": "Artur Tarassow"
+    },
+    "private": true,
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/atecon/gretl_hansl_lang"
+    },
+    "bugs": {
+        "url": "https://github.com/atecon/gretl_hansl_lang/issues"
+    },
+    //"license": "MIT",
     "contributes": {
         "languages": [
             {

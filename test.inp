@@ -8,5 +8,4 @@ summary --simple
 
 gnuplot LRM --time-series --output=display
 
-series fow = y
-
+quit
