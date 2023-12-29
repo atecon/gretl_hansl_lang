@@ -1,0 +1,218 @@
+
+// Place your gretl_hansl_lang workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and
+// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope
+// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is
+// used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders.
+// Placeholders with the same ids are connected.
+// Example:
+// "Print to console": {
+// 	"scope": "javascript,typescript",
+// 	"prefix": "log",
+// 	"body": [
+// 		"console.log('$1');",
+// 		"$2"
+// 	],
+// 	"description": "Log output to console"
+// }
+
+{
+    "assert - equal": {
+        "prefix": "ass",
+        "body": [
+            "assert(${1:actual} == ${2:expected})"
+        ],
+        "description": "assert - equal",
+        "scope": "source.gretl"
+    },
+
+    "assert - notequal": {
+        "prefix": "ass",
+        "body": [
+            "assert(${1:expected} != ${2:actual})"
+        ],
+        "description": "assert - notequal"
+    },
+    "create - bundle": {
+        "prefix": "bundle",
+        "body": [
+            "bundle ${1:name} = _(${2:key} = ${3:value})"
+        ],
+        "description": "create - bundle"
+    },
+    "clear and open": {
+        "prefix": "clear_open",
+        "body": [
+            "clear",
+            "set verbose off",
+            "open ${1:filename} ${2:options} --quiet --preserve"
+        ],
+        "description": "clear and open"
+    },
+    "create - function_test": {
+        "prefix": "function",
+        "body": [
+            "function void test_${1:name} (${2:args})",
+            "\tprint \"Start testing ${1:name}()\"",
+            "\t# Given",
+            "\t${3:given}",
+            "\t# When",
+            "\t${4:when}",
+            "\t# Then",
+            "\t${5:then}",
+            "end function",
+            "test_${1:name}(${2:args})"
+        ],
+        "description": "create - function_test"
+    },
+    "create - function_test_table": {
+        "prefix": "function",
+        "body": [
+            "function void test_${1:name} (const bundles P, ${2:args})",
+            "\tprint \"Start testing ${1:name}().\"",
+            "\tloop foreach i P",
+            "\t\t# Given",
+            "\t\t${3:given}",
+            "\t\t# When",
+            "\t\t${4:when}",
+            "\t\t# Then",
+            "\t\t${5:then}",
+            "\tendloop",
+            "end function",
+            "test_${1:name}(Params, ${2:args})"
+        ],
+        "description": "create - function_test_table"
+    },
+    "create - function": {
+        "prefix": "function",
+        "body": [
+            "function ${1:type} ${2:name} (${3:args})",
+            "\t/* ${4:code description}",
+            "\treturn: ${5:type}, ${6:description} */",
+            "\t${7:code}",
+            "\treturn ${8:variable}",
+            "end function"
+        ],
+        "description": "create - function"
+    },
+    "plot - list": {
+        "prefix": "gnuplot",
+        "body": [
+            "gnuplot ${1:data} --with-lines --time-series --output=\"${2:output} \\",
+            "{ set title \"${3:title}\", \\",
+            "  set xlabel \"${4:xlabel}\", \\",
+            "  set ylabel \"${5:ylabel}\"; }"
+        ],
+        "description": "plot - list"
+    },
+    "plot - matrix": {
+        "prefix": "gnuplot",
+        "body": [
+            "gnuplot ${1:columns} --matrix=${2:matrix} --with-lines --time-series \\",
+            "--output=\"${3:output} \\",
+            "{ set title \"${4:title}\", \\",
+            "  set xlabel \"${5:xlabel}\", \\",
+            "  set ylabel \"${6:ylabel}\"; }"
+        ],
+        "description": "plot - matrix"
+    },
+    "gretl - create - if": {
+        "prefix": "if",
+        "body": [
+            "if ${1:condition}",
+            "\t${2:then}",
+            "endif"
+        ],
+        "description": "gretl - create - if"
+    },
+    "gretl - create - iferror": {
+        "prefix": "if",
+        "body": [
+            "if \\$error",
+            "\t${1:then}",
+            "endif"
+        ],
+        "description": "gretl - create - iferror"
+    },
+    "gretl - create - ifelif": {
+        "prefix": "if",
+        "body": [
+            "if ${1:condition1}",
+            "\t${2:then1}",
+            "elif ${3:condition2}",
+            "\t${4:then2}",
+            "else",
+            "\t${5:then3}",
+            "endif"
+        ],
+        "description": "gretl - create - ifelif"
+    },
+    "gretl - create - ternary": {
+        "prefix": "if",
+        "body": [
+            "${1:variable} = (${2:condition}) ? ${3:then} : ${4:else}"
+        ],
+        "description": "gretl - create - ternary"
+    },
+    "gretl - create - ifelse": {
+        "prefix": "if",
+        "body": [
+            "if ${1:condition}",
+            "\t${2:then}",
+            "else",
+            "\t${3:then}",
+            "endif"
+        ],
+        "description": "gretl - create - ifelse"
+    },
+    "gretl - loop - for": {
+        "prefix": "loop-for",
+        "body": [
+            "loop for (${1:initilization}; ${2:condition}; ${3:modifier})",
+            "\t${4:body}",
+            "endloop"
+        ],
+        "description": "gretl - loop - for"
+    },
+    "gretl - loop - foreach": {
+        "prefix": "loop-foreach",
+        "body": [
+            "loop foreach ${1:index} ${2:object}",
+            "\t${3:body}",
+            "endloop"
+        ],
+        "description": "gretl - loop - foreach"
+    },
+    "gretl - loop - index": {
+        "prefix": "loop-index",
+        "body": [
+            "loop ${1:idx}=${2:start}..${3:end}",
+            "\t${4:body}",
+            "endloop"
+        ],
+        "description": "gretl - loop - index"
+    },
+    "gretl - loop - while": {
+        "prefix": "loop-while",
+        "body": [
+            "loop while ${1:lhs} ${2:condition} ${3:rhs}",
+            "\t${4:body}",
+            "endloop"
+        ],
+        "description": "gretl - loop - while"
+    },
+    "gretl - plot - block": {
+        "prefix": "plotblock",
+        "body": [
+            "plot ${1:data}",
+            "\toptions ${2:options}",
+            "\t# literal set linetype 3 lc rgb \"#0000ff\"",
+            "\t# literal set nokey",
+            "\t# printf \"set title \\\"%s\\\"\", title",
+            "\t# printf \"set xlabel \\\"%s\\\"\", xname",
+            "end plot --output=\"${3:output}\""
+        ],
+        "description": "gretl - plot - block"
+    }
+}
+
