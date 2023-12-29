@@ -6,4 +6,7 @@ print "hello, world!"
 open denmark -q
 summary --simple
 
-tsplots dataset --output=display
+gnuplot LRM --time-series --output=display
+
+series fow = y
+
