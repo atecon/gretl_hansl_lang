@@ -315,7 +315,8 @@
 					"name": "storage.type.numeric.gretl"
 				},
 				{
-					"match": "\\bseries\\b",
+					"comment": "Avoid 'time-series' being highlighted",
+					"match": "(?<!-)\\bseries\\b(?!-)",
 					"name": "storage.type.numeric.gretl"
 				},
 				{
