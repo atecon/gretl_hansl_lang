@@ -126,7 +126,7 @@ function scalar ^foo (scalar p,
 end function
 
 
-function matrix spec_taper (matrix x,
+function matrix spec_taper (matrix x "kok",
                             const scalar p[0.1])
 
     p = p < 0 ? 0 : (p > 0.5 ? 0.5 : p)
