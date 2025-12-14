@@ -500,3 +500,8 @@ function void ghosts_gui (series x "Series 1",
         phplot(b, 1, 2)
     endif
 end function
+
+# Plot block
+plot
+
+end plot
